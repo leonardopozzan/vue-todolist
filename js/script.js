@@ -28,12 +28,26 @@ const app = createApp({
                 {testo : 'merenda',done :false},
                 {testo : 'pranzo',done :false},
                 {testo : 'cena',done :false}
-            ]
+            ],
+            alarm : false
         }
     },
     methods:{
         taskDone(i){
             this.todos[i].done = !this.todos[i].done;
+        },
+        addTask(){
+            if(this.newTodo.length >= 3){
+                this.todos.unshift({testo : this.newTodo, done : false});
+                this.newTodo = '';
+                this.alarm = false;
+            }else{
+                this.alarm = true;
+            }
+            
+        },
+        removeTask(todo){
+            this.todos = this.todos.filter((element)=> element != todo);
         }
     }
 }).mount('#app');

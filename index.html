@@ -17,15 +17,16 @@
             <div class="text-center mb-4">
                 <h1 class="my-4">To do List</h1>
                 <input type="text" class="me-3" v-model="newTodo">
-                <button class="btn btn-dark">Add Task</button>
+                <button class="btn btn-dark" @click="addTask()">Add Task</button>
+                <div class="my-alert mt-2" v-if="alarm">Devi inserire almeno 3 caratteri</div>
             </div>
             <div>
                 <ul>
-                    <li v-for="(todo,i) in todos" :class="{'done':todo.done}">
+                    <li v-for="(todo,i) in todos" :class="{'done':todo.done}" class="my-flex ">
                         <i class="fa-solid fa-check" v-if="!todo.done"></i>
                         <i class="fa-sharp fa-solid fa-xmark" v-else></i>
                         <span :class="{'done':todo.done}" @click="taskDone(i)">{{todo.testo}}</span>
-                        <button><i class="fa-solid fa-minus"></i></button>
+                        <button @click="removeTask(todo)"><i class="fa-solid fa-minus"></i></button>
                     </li>
                     
                 </ul>

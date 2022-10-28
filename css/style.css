@@ -10,3 +10,18 @@
 ul{
     list-style: none;
 }
+.done{
+    text-decoration: line-through 2px solid red;
+}
+.my-alert{
+    color: red;
+    background-color: rgba(255, 0, 0, 0.2);
+    padding: 5px;
+    width: 40%;
+    margin: auto;
+    border-radius: 20px;
+}
+.my-flex{
+    display: flex;
+    align-items: center;
+}
