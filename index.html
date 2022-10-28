@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.41/dist/vue.global.min.js"></script>
+    <script src="js/script.js" defer></script>
+    <title>Vue To Do List</title>
+</head>
+<body>
+    <div id="app">
+        <div class="my-container">
+            <div class="text-center mb-4">
+                <h1 class="my-4">To do List</h1>
+                <input type="text" class="me-3" v-model="newTodo">
+                <button class="btn btn-dark">Add Task</button>
+            </div>
+            <div>
+                <ul>
+                    <li v-for="(todo,i) in todos" :class="{'done':todo.done}">
+                        <i class="fa-solid fa-check" v-if="!todo.done"></i>
+                        <i class="fa-sharp fa-solid fa-xmark" v-else></i>
+                        <span :class="{'done':todo.done}" @click="taskDone(i)">{{todo.testo}}</span>
+                        <button><i class="fa-solid fa-minus"></i></button>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
