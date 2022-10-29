@@ -1,3 +1,4 @@
+/*************************Common******************************/
 *{
     margin: 0;
     padding: 0;
@@ -14,9 +15,12 @@ body{
 ul{
     list-style: none;
 }
-.done{
-    text-decoration: line-through 2px;
+.my-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+/*************************messaggio di errore******************************/
 .my-alert{
     color: red;
     background-color: rgba(255, 0, 0, 0.2);
@@ -25,20 +29,16 @@ ul{
     margin: auto;
     border-radius: 20px;
 }
-.my-flex{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+/*************************elementi to do******************************/
 .item{
     background-color: rgb(167, 167, 167);
-    /* background-color: black; */
     margin-bottom: 5px;
     border-radius: 10px;
     padding: 5px;
     cursor: pointer;
-
+    transition: background-color 0.5s;
 }
+/* bottone per il remove task */
 .item button{
     width: 25px;
     height: 25px;
@@ -54,11 +54,24 @@ ul{
     text-align: center;
     line-height: 30px;
 }
+.inner-item div{
+    font-size: 20px;
+    line-height: 25px;
+}
+.inner-item div:last-child::first-letter{
+    text-transform: uppercase;
+}
+/* pallini colorati */
 .inner-item div:first-child{
     width: 25px;
     height: 25px;
     border-radius: 50%;
     line-height: 25px;
+}
+
+/*************************elementi fatti e hover******************************/
+.done{
+    text-decoration: line-through 2px;
 }
 .inner-item div.x-done:first-child{
     background-color: white;
@@ -67,14 +80,6 @@ ul{
 .li-done{
     background-color: lightgrey!important;
 }
-.inner-item div{
-    font-size: 20px;
-    line-height: 25px;
-}
 .item:not(.li-done):hover{
     background-color: white!important;
 }
-.inner-item div:last-child::first-letter{
-    text-transform: uppercase;
-}
-

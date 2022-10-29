@@ -24,7 +24,7 @@
                 <ul>
                     <li v-for="(todo,i) in todos" class="my-flex item" :class="{'li-done':todo.done}" :style="{backgroundColor : `${colors[mod(i)]}`}">
                         <div class="inner-item flex-grow-1" @click="taskDone(i)">
-                            <div v-if="todo.done" :class="{'x-done':todo.done}">&#10008;</div>
+                            <div v-if="todo.done" :class="{'x-done':todo.done}">&#10008;</div> 
                             <div v-else :style="{backgroundColor : `${colorsCircle[mod(i)]}`}"></div>
                             <div class="ms-2" :class="{'done':todo.done}">{{todo.testo}}</div>
                         </div>

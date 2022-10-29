@@ -35,8 +35,8 @@ const app = createApp({
                 {testo : "disdire appuntamento dal dentista",done :false}
             ],
             alarm : false,
-            colors :['#ff000080','#ff870080','#ffd30080','#a1ff0a80','#0aff9980','#0aefff80','#147df580','#580aff80','#be0aff80'],
-            colorsCircle :['#ff0000','#ff8700','#ffd300','#a1ff0a','#0aff99','#0aefff','#147df5','#580aff','#be0aff']
+            colors :['#ff000080','#ff870080','#ffd30080','#a1ff0a80','#0aff9980','#0aefff80','#147df580','#580aff80','#be0aff80'], //colori per i todo
+            colorsCircle :['#ff0000','#ff8700','#ffd300','#a1ff0a','#0aff99','#0aefff','#147df5','#580aff','#be0aff'] //colori per i pallini iniziali
         }
     },
     methods:{
@@ -57,7 +57,7 @@ const app = createApp({
         removeTask(todo){
             this.todos = this.todos.filter((element)=> element != todo);
         },
-        mod(i){
+        mod(i){  //funzione per ciclare l'array dei colori 
             return i%this.colors.length
         }
     }
