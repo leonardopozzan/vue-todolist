@@ -15,17 +15,19 @@
     <div id="app">
         <div class="my-container">
             <div class="text-center mb-4">
-                <h1 class="my-4">To do List</h1>
-                <input type="text" class="me-3" v-model="newTodo">
+                <h1 class="my-4 fst-italic">To do List</h1>
+                <input type="text" class="me-3" v-model="newTodo" @keyup.enter="addTask()">
                 <button class="btn btn-dark" @click="addTask()">Add Task</button>
-                <div class="my-alert mt-2" v-if="alarm">Devi inserire almeno 3 caratteri</div>
+                <div class="my-alert mt-2" v-show="alarm">Devi inserire almeno 3 caratteri</div>
             </div>
             <div>
                 <ul>
-                    <li v-for="(todo,i) in todos" :class="{'done':todo.done}" class="my-flex ">
-                        <i class="fa-solid fa-check" v-if="!todo.done"></i>
-                        <i class="fa-sharp fa-solid fa-xmark" v-else></i>
-                        <span :class="{'done':todo.done}" @click="taskDone(i)">{{todo.testo}}</span>
+                    <li v-for="(todo,i) in todos" class="my-flex item" :class="{'li-done':todo.done}" :style="{backgroundColor : `${colors[mod(i)]}`}">
+                        <div class="inner-item flex-grow-1" @click="taskDone(i)">
+                            <div v-if="todo.done" :class="{'x-done':todo.done}">&#10008;</div>
+                            <div v-else :style="{backgroundColor : `${colorsCircle[mod(i)]}`}"></div>
+                            <div class="ms-2" :class="{'done':todo.done}">{{todo.testo}}</div>
+                        </div>
                         <button @click="removeTask(todo)"><i class="fa-solid fa-minus"></i></button>
                     </li>
                     
