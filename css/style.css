@@ -28,6 +28,13 @@ ul{
     display: block;
     text-align: center;
 }
+.message-empty{
+    font-size: 1.1rem;
+    padding: 5px;
+    color: green;
+    background-color: rgba(152, 255, 152,0.6);
+    border-radius: 15px;
+}
 /*************************titoli to do******************************/
 .tasks > div:first-child{
     padding: 5px;

@@ -20,7 +20,7 @@
                 <button class="btn btn-dark" v-show="!inputTitle" @click="toggleInputTitle()">Add Category</button>
             </div>
             <div>
-                <ul>
+                <ul v-if="(titleTodos.length != 0)">
                     <li v-for="(title,j) in titleTodos" :key="j" class="tasks mb-4">
                         <div class="my-flex mb-2">
                             <div class="my-flex" :class="{'my-alarm' : title.alarm}">
@@ -30,7 +30,7 @@
                             </div>
                             <button @click="removeTasks(title,j)" class="my-button"><i class="fa-solid fa-minus"></i></button>
                         </div>
-                        <ul>
+                        <ul v-if="(todos[j].length != 0)">
                             <li v-for="(todo,i) in todos[j]" :key="i" class="my-flex task" :class="{'li-done':todo.done}" :style="{backgroundColor : `${colors[mod(i)]}`}">
                                 <div class="inner-task flex-grow-1" @click="taskDone(j,i)">
                                     <div v-if="todo.done" :class="{'x-done':todo.done}">&#10008;</div> 
@@ -40,9 +40,14 @@
                                 <button @click="removeTask(todo,j)" class="my-button"><i class="fa-solid fa-minus"></i></button>
                             </li>
                         </ul>
+                        <div v-else class="message-empty">
+                            Complimenti non hai Task
+                        </div>
                     </li>
                 </ul>
-                
+                <div v-else class="message-empty text-center fs-3">
+                    Complimenti non hai Tasks
+                </div>
             </div>
         </div>
     </div>
