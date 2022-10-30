@@ -21,16 +21,30 @@ ul{
     justify-content: space-between;
 }
 /*************************messaggio di errore******************************/
-.my-alert{
+.my-alarm::after{
+    content: 'Devi inserire almeno 3 caratteri';
     color: red;
-    background-color: rgba(255, 0, 0, 0.2);
+    font-size: 12px;
+    display: block;
+    text-align: center;
+}
+/*************************titoli to do******************************/
+.tasks > div:first-child{
     padding: 5px;
-    width: 40%;
-    margin: auto;
-    border-radius: 20px;
+}
+.my-input{
+    font-size: 12px;
+    margin-right: 5px;
+}
+.my-btn{
+    font-size: 12px;
+    padding: 2px 12px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
 }
 /*************************elementi to do******************************/
-.item{
+.task{
     background-color: rgb(167, 167, 167);
     margin-bottom: 5px;
     border-radius: 10px;
@@ -39,30 +53,30 @@ ul{
     transition: background-color 0.5s;
 }
 /* bottone per il remove task */
-.item button{
+.my-button{
     width: 25px;
     height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0;
+    border: 1px solid black;
     border-radius: 50%;
 }
-.inner-item{
+.inner-task{
     display: flex;
     align-items: center;
     text-align: center;
     line-height: 30px;
 }
-.inner-item div{
+.inner-task div{
     font-size: 20px;
     line-height: 25px;
 }
-.inner-item div:last-child::first-letter{
+.inner-task div:last-child::first-letter{
     text-transform: uppercase;
 }
 /* pallini colorati */
-.inner-item div:first-child{
+.inner-task div:first-child{
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -73,13 +87,13 @@ ul{
 .done{
     text-decoration: line-through 2px;
 }
-.inner-item div.x-done:first-child{
+.inner-task div.x-done:first-child{
     background-color: white;
     color: red;
 }
 .li-done{
     background-color: lightgrey!important;
 }
-.item:not(.li-done):hover{
+.task:not(.li-done):hover{
     background-color: white!important;
 }

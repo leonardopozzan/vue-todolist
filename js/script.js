@@ -22,40 +22,82 @@ const {createApp} = Vue;
 const app = createApp({
     data(){
         return {
-            newTodo: '',
-            todos:[
+            newTitle: '',
+            todos:[[
                 {testo : "studiare inglese",done :false},
-                {testo : "fare la spesa",done :false},
+                {testo : "passare in farmacia",done :false},
                 {testo : "riordinare camera",done :false},
                 {testo : "comprare regalo per l'anniversario",done :false},
                 {testo : "scegliere la meta delle vacanze",done :false},
                 {testo : "restituire il dvd al nolleggio",done :false},
                 {testo : "comprare i cioccolatini per l'amante",done :false},
                 {testo : "aperitivo con amici",done :false},
-                {testo : "disdire appuntamento dal dentista",done :false}
-            ],
-            alarm : false,
+                {testo : "fare copia delle chiavi di casa",done :false}
+            ],[
+                {testo : "pasta",done :false},
+                {testo : "sugo",done :false},
+                {testo : "mozzarelle",done :false},
+                {testo : "marmellata",done :false},
+                {testo : "fette biscottate",done :false},
+                {testo : "patatine",done :false}
+            ],[
+                {testo : "dentista",done :false},
+                {testo : "medico di base",done :false},
+                {testo : "banca",done :false},
+                {testo : "poste italiane",done :false},
+                {testo : "psicologo",done :false}
+            ]],
+            titleTodos:[{titolo : 'generico',finished : false, alarm : false,inputTask : false,newTodo: ''},
+                        {titolo : 'spesa',finished : false, alarm : false,inputTask : false,newTodo: ''},
+                        {titolo : 'appuntamenti',finished : false, alarm : false,inputTask : false,newTodo: ''}
+                    ],
+            alarmTitle : false,
+            inputTitle : false,
             colors :['#ff000080','#ff870080','#ffd30080','#a1ff0a80','#0aff9980','#0aefff80','#147df580','#580aff80','#be0aff80'], //colori per i todo
             colorsCircle :['#ff0000','#ff8700','#ffd300','#a1ff0a','#0aff99','#0aefff','#147df5','#580aff','#be0aff'] //colori per i pallini iniziali
         }
     },
     methods:{
-        taskDone(i){
-            this.todos[i].done = !this.todos[i].done;
-        },
-        addTask(){
-            if(this.newTodo.length >= 3){
-                this.todos.unshift({testo : this.newTodo, done : false});
-                this.newTodo = '';
-                this.alarm = false;
+        addTasks(){
+            if(this.newTitle.length >= 3){
+                this.titleTodos.unshift({titolo : this.newTitle, finished : false, alarm : false,inputTask : false});
+                this.todos.unshift([]);
+                this.newTitle = '';
+                this.alarmTitle = false;
             }else{
-                this.alarm = true;
-                setTimeout(()=> this.alarm=false,1500)
+                this.alarmTitle = true;
+                setTimeout(()=> this.alarmTitle=false,1500);
+                this.newTitle = '';
             }
-            
         },
-        removeTask(todo){
-            this.todos = this.todos.filter((element)=> element != todo);
+        removeTasks(title,j){
+            this.titleTodos = this.titleTodos.filter((element)=> element != title);
+            this.todos = this.todos.filter((element)=> element != this.todos[j]);
+        },
+        taskDone(j,i){
+            this.todos[j][i].done = !this.todos[j][i].done;
+        },
+        addTask(j){
+            if(this.titleTodos[j].newTodo.length >= 3){
+                this.todos[j].unshift({testo : this.titleTodos[j].newTodo, done : false});
+                this.titleTodos[j].newTodo = '';
+                this.titleTodos[j].alarm = false;
+            }else{
+                this.titleTodos[j].alarm = true;
+                setTimeout(()=> this.titleTodos[j].alarm=false,1500)
+                this.titleTodos[j].newTodo = '';
+            }
+        },
+        removeTask(todo,j){
+            this.todos[j] = this.todos[j].filter((element)=> element != todo);
+        },
+        toggleInput(j){
+            this.titleTodos[j].newTodo = '';
+            this.titleTodos[j].inputTask = !this.titleTodos[j].inputTask
+        },
+        toggleInputTitle(){
+            this.newTitle = '';
+            this.inputTitle = !this.inputTitle
         },
         mod(i){  //funzione per ciclare l'array dei colori 
             return i%this.colors.length
